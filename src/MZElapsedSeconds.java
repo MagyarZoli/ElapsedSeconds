@@ -17,16 +17,21 @@ import java.util.concurrent.TimeUnit;
  * @see java.util.Date
  * @see java.util.TimerTask
  * @see java.util.concurrent.TimeUnit
- * @since 1.0
+ * @since 1.1
  * @author <a href=https://github.com/MagyarZoli>Magyar Zoltán</a>
  */
 public abstract class MZElapsedSeconds
 extends TimerTask{
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    protected SimpleDateFormat simpleDateFormat;
     private static DecimalFormat decimalFormt = new DecimalFormat("###");
     private static Date date = new Date();
-    private String resultin = simpleDateFormat.format(date);
+    private String resultin;
     private String resultout;
+
+    public MZElapsedSeconds(SimpleDateFormat simpleDateFormat){
+        this.simpleDateFormat = simpleDateFormat;
+        resultin = simpleDateFormat.format(date);
+    }
 
     private long dateToSeconds(String str, SimpleDateFormat format)
     throws ParseException{
